@@ -59,13 +59,13 @@ function join() {
     $('.join').click(function () {
         $('#test').modal('show');
         id = $(this).data('id');
-        herf = $(this).data('join');
+        href = $(this).data('join');
         if ($(this).data('private') == 1) {
             $("#recipient-name").val('');
             $('#joinModal').modal('show');
         } else {
             ajaxLoadingOpen();
-            $.post(herf, {'_method': 'put', '_token': token}, function (res) {
+            $.post(href, { '_method': 'put', '_token': token }, function (res) {
                 if (res.status == true) {
                     location.href = res.redirect_uri;
                 } else {

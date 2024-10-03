@@ -66,7 +66,7 @@ class RoomController extends Controller
                 'actions'    => (object) [
                     'join_uri' => route('room.join.room', [
                         'id' => $room->id,
-                    ]),
+                    ], true),
                 ],
             ];
         });
@@ -188,15 +188,18 @@ class RoomController extends Controller
                 return (object) [
                     'content'    => (Arr::get($message, 'content')),
                     'user_name'  => Arr::get($message, 'user_name'),
-                    'user_image' => sprintf("https://ui-avatars.com/api/?name=%s&color=7F9CF5&background=EBF4FF",
-                        $message->user->name),
+                    'user_image' => sprintf(
+                        "https://ui-avatars.com/api/?name=%s&color=7F9CF5&background=EBF4FF",
+                        $message->user->name
+                    ),
                     'class'      => Auth::user()->id == $message->user_id ? 'right' : 'left',
                     'time'       => $message->created_at->format('H:i'),
                 ];
             });
         });
 
-        return view('room.chat',
+        return view(
+            'room.chat',
             [
                 'room'      => $room,
                 'messages'  => $latestMessages,
@@ -284,5 +287,4 @@ class RoomController extends Controller
             'redirect_uri' => route('room.chat', ['id' => $id]),
         ]);
     }
-
 }
