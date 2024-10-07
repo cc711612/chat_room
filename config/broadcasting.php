@@ -38,16 +38,14 @@ return [
             'options' => config('app.env') == 'production'
                 ? [
                     'cluster' => env('PUSHER_APP_CLUSTER'),
-                    'useTLS' => false,
-                    'host' => env('PUSHER_HOST', '127.0.0.1'),
-                    'port' => env('PUSHER_APP_PORT'),
-                    'scheme' => env('PUSHER_APP_SCHEME'),
-                    'encrypted' => env('PUSHER_APP_ENCRYPTED'),
+                    'host'    => '127.0.0.1',
+                    'port'    => env('PUSHER_APP_PORT', 6001),
                 ]
                 : [
                     'cluster' => env('PUSHER_APP_CLUSTER'),
                 ],
         ],
+
 
         'ably' => [
             'driver' => 'ably',
